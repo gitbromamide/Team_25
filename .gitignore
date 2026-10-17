@@ -1,0 +1,6 @@
+data/raw/
+data/interim/
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+*Zone.Identifier
