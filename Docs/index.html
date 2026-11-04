@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What explains the rise of Indian chess? Conclusions</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
+<style>
+:root{--bg:#f6f7f9;--ink:#1c2230;--mute:#59637a;--rule:#d5d9e2;--india:#c77d00;--other:#5d6f8f;--note:#e9edf4;--ok:#2c7a5b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171b24;--ink:#e6e9f0;--mute:#9aa4ba;--rule:#323a4b;--india:#f0b13a;--other:#8ea3c7;--note:#222938;--ok:#6cc4a0}}
+:root[data-theme="dark"]{--bg:#171b24;--ink:#e6e9f0;--mute:#9aa4ba;--rule:#323a4b;--india:#f0b13a;--other:#8ea3c7;--note:#222938;--ok:#6cc4a0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:46rem;margin:0 auto;padding:2.5rem 1.2rem 4rem}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .6rem}
+h2{font-size:1.4rem;line-height:1.3;margin:0 0 .5rem}
+p{margin:.6rem 0}
+.sub{color:var(--mute);margin:0 0 1.6rem}
+.lead{font-size:1.1rem}
+section{border-top:1px solid var(--rule);margin-top:2.6rem;padding-top:1.6rem}
+.ans{font-weight:700}
+.chart{width:100%;height:320px;margin:.8rem 0}
+.nums{margin:.4rem 0 .8rem;padding-left:1.1rem}
+.nums li{margin:.3rem 0}
+.caveat{background:var(--note);border-left:4px solid var(--other);padding:.6rem .9rem;margin:1rem 0;font-size:.97rem}
+table{border-collapse:collapse;width:100%;font-size:.95rem;display:block;overflow-x:auto}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+nav a{color:var(--ink);margin-right:1rem}
+.foot{color:var(--mute);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+<h1>What explains the rise of Indian chess?</h1>
+<p class="sub">Team 25, CS215 Checkpoint 2. Conclusions from the FIDE rating lists, Jul 2015 to Oct 2026.</p>
+
+<p class="lead">We started with the guess that India’s rise is mostly a steady long-run trend with at most a small post-2020 bump. Mostly right, with two corrections: growth slowed during COVID instead of speeding up, and most of the growth comes from more people being rated, not from a larger share of strong players.</p>
+<nav><a href="#q1">Pool or strength</a><a href="#q2">Timing</a><a href="#q3">India vs others</a><a href="#q4">Formats</a><a href="#sum">Summary</a></nav>
+
+<section id="q1">
+<h2>Did India get more strong players, or just more players?</h2>
+<p class="ans">More players. The rated pool grew 2.6 times between Jan 2016 and Jan 2026, the 2300+ group only 2.0 times, so the share of 2300+ players fell from 0.70% to 0.54%.</p>
+<div id="c1" class="chart"></div>
+<ul class="nums">
+<li>If the share had stayed at its 2016 level, 141 players would have become about 363. The actual number is 281.</li>
+<li>On a log scale the pool rose by 0.95, the 2300+ count by 0.69, and the share by −0.26.</li>
+<li>Difference in shares: −0.16 percentage points, 95% CI −0.29 to −0.03 (two-proportion interval, p ≈ 0.02).</li>
+<li>Ratio of 2300+ counts: 1.99, 95% CI 1.63 to 2.44, treating each count as Poisson.</li>
+</ul>
+<div class="caveat">The same players sit in both lists, so the two samples are not independent and the intervals are a rough guide. FIDE has also lowered its rating floor over these years (we still need to confirm the dates), which would add low-rated newcomers to the pool by itself. The newest point (Oct 2026: 322 of 57,200, 0.56%) is a small rebound, but it is one list.</div>
+</section>
+
+<section id="q2">
+<h2>Did growth speed up after COVID, the Chennai Olympiad or Gukesh’s title?</h2>
+<p class="ans">Not after COVID, where growth slowed. After Chennai and Gukesh the fitted growth is faster, but with 24 snapshots we cannot tell that apart from ordinary wobble.</p>
+<div id="c2" class="chart"></div>
+<ul class="nums">
+<li>Overall, the 2300+ count grew about 6.8% a year (95% CI 6.3% to 7.3%), which doubles it in roughly ten years.</li>
+<li>We fitted a straight line to log(2300+) with a break at each event, and look at the change in yearly growth rate:</li>
+<li>COVID: −2.9 points, CI −4.6 to −1.1, p = 0.003. The rated pool sat near 33,000 from mid-2020 to early 2022.</li>
+<li>Olympiad: +0.9 points, CI −1.2 to +3.0, p = 0.40.</li>
+<li>Gukesh: +4.3 points, CI −1.5 to +10.0, p = 0.14. Implied growth after the break is about 11% a year against 7% before.</li>
+<li>Same model at 15 arbitrary dates between 2018 and 2025 gives changes from −4.6 to +4.3 points (sd 2.9). Gukesh’s value is the top of that range, not beyond it.</li>
+</ul>
+<div class="caveat">One Olympiad test on the pool alone gave p = 0.04, but that is one of six tests, so we do not lean on it. Consecutive snapshots are correlated, which makes the t-intervals too narrow. The three events are also close together and overlap with rule changes, so even a clear break would not show which event caused it. The standard list also shows a pause, not the online-chess boom, because rated over-the-board play stopped.</div>
+</section>
+
+<section id="q3">
+<h2>Is India’s growth unusual compared with other federations?</h2>
+<p class="ans">Yes, among the six we picked. India’s 2300+ count grew about 8% a year, ahead of China at 3.5% and the USA at 1.8%, while Germany and Russia shrank slightly.</p>
+<div id="c3" class="chart"></div>
+<ul class="nums">
+<li>India’s rate from the Jul 2015 and Oct 2026 counts (130 to 322): 8.0% a year, 95% CI 6.2% to 9.8%. China’s 3.5% is outside that interval.</li>
+<li>India’s share of the world’s 2300+ players went from about 1.5% to 3.7%. Those shares imply a world total near 8,700 at both ends, so India mostly took a bigger slice.</li>
+<li>Strong players per rated player is still low for India, about 0.5%. China is near 4.8% and the USA near 3.7%. That share has fallen in every federation we plotted, so the participation story is not only Indian.</li>
+</ul>
+<div class="caveat">The other five rates come from end-to-end multiples read off our chart and have no intervals yet. The federations are placeholders we chose as large and well known; a different group could change the ranking.</div>
+</section>
+
+<section id="q4">
+<h2>Do standard, rapid and blitz tell the same story?</h2>
+<p class="ans">Same direction, different size. The rated pools grew far more in rapid and blitz, but the 2300+ groups grew more in standard.</p>
+<div id="c4" class="chart"></div>
+<ul class="nums">
+<li>2300+ players, Jul 2015 to Oct 2026: standard 2.5 times (CI 2.0 to 3.0), blitz 1.6 (CI 1.3 to 2.2), rapid 1.5 (CI 1.1 to 2.0). Standard sits just above rapid and overlaps with blitz.</li>
+<li>Rapid and blitz strong-player counts were nearly flat from 2016 to 2022, so online chess shows no jump there either.</li>
+<li>India’s share of world 2300+ players: standard 1.5% to 3.7%, blitz about 2.8% to 3.2%, rapid about 2.7% to 2.8%.</li>
+</ul>
+<div class="caveat">Both rapid and blitz lists make a step between Jul 2022 and Jan 2023 (rapid dips, then both jump). A step in two lists in the same window looks like a change in how the lists work more than a change in players, and it falls right after the Olympiad, so we cannot separate the two. We need to check the FIDE handbook for it. The rapid and blitz pools started small (2,787 and 1,832 rated players), which inflates their multiples.</div>
+</section>
+
+<section id="sum">
+<h2>Summary</h2>
+<table>
+<tr><th>Question</th><th>Answer</th><th>Uncertainty</th></tr>
+<tr><td>Pool or strength?</td><td>Pool. Share of 2300+ fell 0.70% to 0.54%.</td><td>Share difference −0.16 pts, CI −0.29 to −0.03</td></tr>
+<tr><td>Timing</td><td>COVID slowed growth. Later speed-ups are not clearly beyond normal wobble.</td><td>COVID break p = 0.003. Gukesh break CI spans zero.</td></tr>
+<tr><td>Unusual?</td><td>Yes against our six. India 8% a year, China 3.5%.</td><td>India CI 6.2% to 9.8%. Others lack intervals.</td></tr>
+<tr><td>Formats</td><td>Same direction. Standard grew most among strong players.</td><td>Intervals overlap for blitz. Late-2022 step unexplained.</td></tr>
+</table>
+<p>What would change our mind: a confirmed FIDE rule change around 2022 would make the post-Olympiad rise in rapid and blitz an artefact, and monthly lists instead of January and July ones would tell us whether the Gukesh speed-up is real.</p>
+<p class="foot">Data note: the 2015 to 2020 standard values are exact from our pivot table and the Jan 2016 and Jan 2026 values from our Checkpoint 1 report. The remaining points, the benchmark multiples and the rapid and blitz counts were read from our notebook charts, so expect errors of a percent or two. Re-run the numbers on summary.csv before submitting.</p>
+</section>
+</main>
+
+<script>
+var css=getComputedStyle(document.documentElement);
+function v(n){return css.getPropertyValue(n).trim();}
+var ink=v('--ink'),mute=v('--mute'),rule=v('--rule'),ind=v('--india'),oth=v('--other');
+var T=[],P=[18396,20123,21972,23660,25270,26929,28576,30013,31502,32730,33027,33100,33400,33800,35000,36700,38300,39800,42700,45000,48700,51859,55700,57200];
+var G=[130,141,143,148,159,175,174,185,189,198,208,209,210,217,220,231,226,238,250,260,267,281,293,322];
+for(var i=0;i<23;i++)T.push(2015.5+0.5*i);T.push(2026.79);
+var cfg={displayModeBar:false,responsive:true};
+function lay(yt,extra){var l={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:ink,family:'Atkinson Hyperlegible, sans-serif',size:13},margin:{l:56,r:12,t:12,b:70},xaxis:{gridcolor:rule,zerolinecolor:mute},yaxis:{title:yt,gridcolor:rule,zerolinecolor:mute},legend:{orientation:'h',y:-0.2}};
+for(var k in extra)l[k]=extra[k];return l;}
+
+/* Q1 */
+var s0=G[1]/P[1],cx=T.slice(1),cy=P.slice(1).map(function(p){return Math.round(p*s0);});
+Plotly.newPlot('c1',[
+{x:cx,y:cy,name:'if the 2300+ share had stayed at its Jan 2016 level',mode:'lines',line:{color:oth,dash:'dash',width:2}},
+{x:cx,y:G.slice(1),name:'actual 2300+ players',mode:'lines+markers',line:{color:ind,width:3},marker:{size:5}}
+],lay('players rated 2300+',{xaxis:{gridcolor:rule,range:[2015.8,2027]}}),cfg);
+
+/* Q2: change in yearly growth rate, real events vs arbitrary dates */
+var pd=[[2018.0,-.029],[2018.5,-.046],[2019.0,-.040],[2019.5,-.038],[2020.0,-.033],[2020.5,-.029],[2021.0,-.024],[2021.5,-.016],[2022.0,-.008],[2022.5,.001],[2023.0,.009],[2023.5,.021],[2024.0,.025],[2024.5,.031],[2025.0,.043]];
+var ev=[[2020.17,-.029,.017,'COVID'],[2022.58,.009,.021,'Olympiad'],[2024.92,.043,.058,'Gukesh']];
+Plotly.newPlot('c2',[
+{x:pd.map(function(a){return a[0];}),y:pd.map(function(a){return a[1]*100;}),name:'arbitrary break dates',mode:'markers',marker:{color:oth,size:7,opacity:.7}},
+{x:ev.map(function(a){return a[0];}),y:ev.map(function(a){return a[1]*100;}),name:'real events, 95% CI',mode:'markers+text',text:ev.map(function(a){return a[3];}),textposition:'top center',marker:{color:ind,size:11},error_y:{type:'data',array:ev.map(function(a){return a[2]*100;}),color:ind,thickness:2}}
+],lay('change in yearly growth (percentage points)',{xaxis:{gridcolor:rule,title:'date of break'},shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:0,y1:0,line:{color:mute,width:1}}]}),cfg);
+
+/* Q3 */
+var fed=['India','China','USA','France','Germany','Russia'],gr=[8.0,3.5,1.8,0.4,-0.5,-1.4];
+Plotly.newPlot('c3',[{type:'bar',x:fed,y:gr,marker:{color:gr.map(function(a,i){return i==0?ind:oth;})},error_y:{type:'data',symmetric:false,array:[1.8,0,0,0,0,0],arrayminus:[1.8,0,0,0,0,0],color:ink,thickness:2},text:gr.map(function(a){return a.toFixed(1)+'%';}),textposition:'outside',cliponaxis:false}],
+lay('growth of 2300+ players, % per year',{margin:{l:56,r:12,t:24,b:40},showlegend:false}),cfg);
+
+/* Q4 */
+var fm=['standard','blitz','rapid'];
+Plotly.newPlot('c4',[
+{type:'bar',name:'rated pool, times larger',x:fm,y:[3.1,10.1,15.4],marker:{color:oth}},
+{type:'bar',name:'2300+ players, times larger',x:fm,y:[2.5,1.65,1.5],marker:{color:ind},error_y:{type:'data',symmetric:false,array:[.55,.5,.5],arrayminus:[.5,.4,.35],color:ink,thickness:2}}
+],lay('growth since Jul 2015 (multiple)',{barmode:'group'}),cfg);
+</script>
+</body>
+</html>
