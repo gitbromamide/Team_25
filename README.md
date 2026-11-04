@@ -1,4 +1,4 @@
-# Team_25
+# Team_25 : What explains the rise of Indian chess?
         Tracking Spreadsheet link : https://docs.google.com/spreadsheets/d/1tvUrJxv8OnBDu2KosB9XRdEo8XhPkGPStZWP895Ao9U/edit?usp=sharing
 
 ## Dashboard Link
